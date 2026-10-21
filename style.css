@@ -17,3 +17,21 @@ body.dark{--bg:#131827;--panel:rgba(27,34,55,.65);--fg:#f2f4ff;--muted:#aab3ca;-
 body.dark input:not([type=checkbox]),body.dark select{background:rgba(20,25,43,.45);border-color:rgba(255,255,255,.15)}body.dark .ambient1{background:#294c9d;opacity:.3}body.dark .ambient2{background:#71418a;opacity:.26}
 @media(max-width:700px){#sidebar{top:0;bottom:0;width:min(84vw,320px);padding-top:calc(24px + env(safe-area-inset-top))}header{margin:8px 10px 0;height:56px;top:8px;border-radius:17px}#content{padding:25px 19px calc(135px + env(safe-area-inset-bottom))}.card{padding:18px;border-radius:20px}.title{font-size:34px}#bottomNav{display:flex;position:fixed;z-index:4;bottom:calc(13px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(calc(100% - 28px),470px);height:69px;align-items:center;justify-content:space-around;background:var(--glass);border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 40px #16244836;backdrop-filter:blur(25px) saturate(160%);-webkit-backdrop-filter:blur(25px) saturate(160%)}#bottomNav button{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:54px;padding:6px;border-radius:13px;color:var(--fg)}#bottomNav span{font-size:23px;line-height:24px}#bottomNav small{font-size:10px;font-weight:600}#bottomNav button:active{background:var(--hover)}.day{min-height:58px;padding:3px}.calendar{gap:3px}.event{font-size:9px}.tablewrap{border-radius:16px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* v2.0.1: touch-safe drawer and iOS standalone safe areas */
+#sidebarBackdrop{display:none}
+@media(max-width:700px){
+  #app{height:100vh;height:100dvh}
+  #sidebarBackdrop{display:block;position:fixed;inset:0;z-index:8;background:rgba(8,12,25,.38);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease,visibility .22s ease;touch-action:manipulation}
+  body.menuOpen #sidebarBackdrop{opacity:1;visibility:visible;pointer-events:auto}
+  #sidebar{z-index:9;top:0;bottom:0;max-height:100%;overflow-y:auto;overscroll-behavior:contain}
+  body.menuOpen{overflow:hidden}
+  body.menuOpen main,body.menuOpen #bottomNav{pointer-events:none}
+  main{padding-top:env(safe-area-inset-top,0px)}
+  #sidebar{padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  #bottomNav{bottom:calc(13px + env(safe-area-inset-bottom,0px))}
+}
+/* iOS PWA status-bar region must not overlap the header */
+@media(max-width:700px) and (display-mode:standalone){
+  main{padding-top:max(env(safe-area-inset-top,0px),20px)}
+}

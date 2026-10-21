@@ -16,3 +16,10 @@
 - Offline changes are kept in browser localStorage; clearing site data can erase unsynced changes.
 - Works over HTTPS on Safari iOS 16 and Chrome Android. Glass blur is progressively enhanced; may vary by device.
 - For safer public deployment, Supabase Row Level Security must remain enabled with per-user policies.
+
+
+## v2.0.1 bug fixes
+- Sidebar backdrop catches taps outside drawer and closes it without click-through; Escape closes drawer.
+- iOS standalone PWA header respects status-bar safe-area, including iPhone X notch.
+- Updated service worker cache version. No Supabase schema changes.
+- Replace files in the existing GitHub repository; do not rerun SQL. Backup JSON before updating.
