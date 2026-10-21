@@ -35,3 +35,16 @@ body.dark input:not([type=checkbox]),body.dark select{background:rgba(20,25,43,.
 @media(max-width:700px) and (display-mode:standalone){
   main{padding-top:max(env(safe-area-inset-top,0px),20px)}
 }
+
+/* v2.0.2: standalone iOS header clearance and reliable independent backdrop */
+@media(max-width:700px){
+  #sidebarBackdrop{position:fixed!important;inset:0!important;z-index:1000!important;display:block!important;background:rgba(8,12,25,.46);opacity:0;visibility:hidden;pointer-events:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  body.menuOpen #sidebarBackdrop{opacity:1;visibility:visible;pointer-events:auto}
+  #sidebar{z-index:1001!important}
+  body.menuOpen main,body.menuOpen #bottomNav{pointer-events:none}
+  main{padding-top:0!important}
+  #sidebar{padding-top:20px}
+  html.ios-pwa main{padding-top:max(54px,env(safe-area-inset-top,0px))!important}
+  html.ios-pwa #sidebar{padding-top:max(70px,calc(18px + env(safe-area-inset-top,0px)))!important}
+  html.ios-pwa #app{height:100dvh}
+}

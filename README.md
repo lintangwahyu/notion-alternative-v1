@@ -23,3 +23,10 @@
 - iOS standalone PWA header respects status-bar safe-area, including iPhone X notch.
 - Updated service worker cache version. No Supabase schema changes.
 - Replace files in the existing GitHub repository; do not rerun SQL. Backup JSON before updating.
+
+
+## v2.0.2 fixes
+- iOS Home Screen PWA: separate top safe clearance (54px fallback) without shifting Android.
+- Drawer backdrop moved outside #app to avoid stacking-context hit testing issues in Safari; click and touchend close it.
+- Versioned JS/CSS URLs and service-worker cache name updated.
+- No database migrations needed.
